@@ -1431,6 +1431,13 @@ main {
   margin-top: 8px;
 }
 
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  height: 0;
+  overflow: hidden;
+}
+
 .appliance-shot {
   margin: 40px auto 0;
   max-width: 420px;

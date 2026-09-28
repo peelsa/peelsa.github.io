@@ -65,9 +65,17 @@
 
               <input type="hidden" data-mail-subject value="OEM sales inquiry — on-site AI" />
 
+              <label class="hp-field" aria-hidden="true">
+                Company website
+                <input name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+              </label>
               <label>
                 Name
                 <input name="name" type="text" autocomplete="name" required />
+              </label>
+              <label>
+                Your email
+                <input name="email" type="email" autocomplete="email" required />
               </label>
               <label>
                 Organization
@@ -90,10 +98,8 @@
                 <textarea name="note" required placeholder="Short is fine."></textarea>
               </label>
 
-              <button class="btn btn-primary" type="submit">Send</button>
-              <p class="hint" data-pending-only>
-                Submit keeps your note on this page until a private inbox is connected. Nothing is emailed from the site.
-              </p>
+              <button class="btn btn-primary" type="submit" data-fs-submit>Send</button>
+              <p class="hint" data-form-status role="status"></p>
             </form>
           </article>
         </div>
