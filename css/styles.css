@@ -660,6 +660,49 @@ tr:last-child td {
   line-height: 1.65;
 }
 
+.hero-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  gap: 40px 48px;
+  align-items: end;
+}
+
+.hero-split h1,
+.hero-split .lead {
+  max-width: none;
+}
+
+.hero-side {
+  display: grid;
+  gap: 10px;
+}
+
+.hero-side article {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+
+.hero-side h2 {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.hero-side p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .hero-split {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ——— Contact ——— */
 .contact-grid {
   display: grid;
