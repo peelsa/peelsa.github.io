@@ -135,7 +135,7 @@
       text(
         "div",
         "demo-footer-note",
-        "Scripted demonstration · keystrokes + ~30 tok/s stream are simulated. Fictional OEM: Northline Process Equipment. No live model and no customer files."
+        "Scripted demonstration · keystrokes + ~30 tok/s stream are simulated. Fictional OEM: Harborline Packaging. No live model and no customer files."
       )
     );
 
