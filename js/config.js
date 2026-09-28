@@ -6,7 +6,7 @@ window.SITE = {
   brand: "Peelsa Labs",
   brandMark: "P",
   CONTACT_EMAIL: "",
-  INTENDED_EMAIL: "hello@peelsa.ai",
+  INTENDED_EMAIL: "",
   location: "Illinois · Central Time",
 };
 // Back-compat for older main.js hooks

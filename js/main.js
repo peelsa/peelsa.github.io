@@ -3,7 +3,7 @@
   const brand = cfg.brand || "Peelsa Labs";
   const mark = cfg.brandMark || brand.charAt(0).toUpperCase();
   const email = (cfg.CONTACT_EMAIL || "").trim();
-  const intended = (cfg.INTENDED_EMAIL || "hello@example.com").trim();
+  const intended = (cfg.INTENDED_EMAIL || "").trim();
   const liveEmail = email || intended;
   const isPending = !email;
 
