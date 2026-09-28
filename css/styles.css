@@ -138,8 +138,7 @@ ol {
 .logo-mark {
   width: 28px;
   height: 28px;
-  border-radius: 7px;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   flex-shrink: 0;
 }
