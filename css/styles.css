@@ -306,7 +306,8 @@ ol {
   margin-bottom: 20px;
 }
 
-.hero h1 .uline {
+.hero h1 .uline,
+.page-hero h1 .uline {
   background-image: linear-gradient(var(--accent), var(--accent));
   background-size: 100% 2px;
   background-repeat: no-repeat;
