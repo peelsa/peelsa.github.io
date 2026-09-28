@@ -1,6 +1,6 @@
 (function () {
   const cfg = window.SITE || window.FW || {};
-  const brand = cfg.brand || "Onsite";
+  const brand = cfg.brand || "Peelsa Labs";
   const mark = cfg.brandMark || brand.charAt(0).toUpperCase();
   const email = (cfg.CONTACT_EMAIL || "").trim();
   const intended = (cfg.INTENDED_EMAIL || "hello@example.com").trim();

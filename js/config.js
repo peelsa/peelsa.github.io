@@ -3,12 +3,10 @@
  * Keep CONTACT_EMAIL empty until the inbox works.
  */
 window.SITE = {
-  // Temporary wordmark — infrastructure tone, not a vertical.
-  // Replace everywhere by changing this string.
-  brand: "Onsite",
-  brandMark: "O",
+  brand: "Peelsa Labs",
+  brandMark: "P",
   CONTACT_EMAIL: "",
-  INTENDED_EMAIL: "hello@onsite.example",
+  INTENDED_EMAIL: "hello@peelsa.ai",
   location: "Illinois · Central Time",
 };
 // Back-compat for older main.js hooks
