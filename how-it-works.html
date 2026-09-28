@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How it works — on-site AI</title>
+  <meta name="description" content="Watch a simulated on-site AI question: keystrokes, wall/retrieve, ~30 tok/s stream, stack overlay. Same path for plants and firms." />
+  <meta name="theme-color" content="#08090a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/demo-chat.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="preview-banner" data-pending-only>
+    <strong>Preview build</strong> — parent brand name and domain TBD.
+  </div>
+  <header class="site-header">
+    <div class="shell">
+      <nav class="nav" aria-label="Primary">
+        <a class="logo" href="index.html">
+          <span class="logo-mark" data-brand-mark aria-hidden="true">O</span>
+          <span data-brand>Onsite</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <div class="nav-links">
+          <a href="plants.html">OEMs</a>
+          <a href="legal.html">Legal</a>
+          <a href="how-it-works.html" aria-current="page">How it works</a>
+          <a href="security.html">Security</a>
+          <a href="hardware.html">Hardware</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="about.html">About</a>
+        </div>
+        <div class="nav-cta"><a class="btn-sm" href="contact.html">Contact</a></div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero page-hero--compact">
+      <div class="shell">
+        <div class="eyebrow">How it works</div>
+        <h1>Watch the model come to the files.</h1>
+        <p class="lead">
+          Simulated product preview — keystrokes, on-site think time, ~30 tok/s stream, and a stack overlay.
+          No live model. Nothing leaves this page.
+        </p>
+      </div>
+    </section>
+
+    <section class="demo-section demo-section--lead" id="demo">
+      <div class="shell">
+        <div class="demo-pack-tabs" role="tablist" aria-label="Demo door">
+          <button type="button" class="demo-pack-tab is-active" data-demo-pack-tab="plants">OEM Sales</button>
+          <button type="button" class="demo-pack-tab" data-demo-pack-tab="legal">Legal</button>
+        </div>
+
+        <div data-demo-pack-panel="plants" id="demo-plants">
+          <div data-demo="plants" data-demo-auto="true"></div>
+        </div>
+        <div data-demo-pack-panel="legal" id="demo-legal" hidden>
+          <div data-demo="legal"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div class="section-kicker">What you just watched</div>
+          <h2>Ingest → tag → embed → retrieve → answer.</h2>
+          <p>Same pipeline for OEM sales teams and firms. Different documents. Different walls. The stack overlay tracks each stage as the simulation runs.</p>
+        </div>
+        <div class="flow">
+          <div class="flow-step">
+            <div class="n">01</div>
+            <h3>Ingest</h3>
+            <p>Proposals, manuals, DMS, CRM notes — originals kept</p>
+          </div>
+          <div class="flow-step">
+            <div class="n">02</div>
+            <h3>Tag</h3>
+            <p>Hash, source, ACL / matter / product-line labels</p>
+          </div>
+          <div class="flow-step">
+            <div class="n">03</div>
+            <h3>Embed</h3>
+            <p>Local embeddings beside the big model</p>
+          </div>
+          <div class="flow-step">
+            <div class="n">04</div>
+            <h3>Retrieve</h3>
+            <p>Behind walls — payload filters fire first</p>
+          </div>
+          <div class="flow-step">
+            <div class="n">05</div>
+            <h3>Answer</h3>
+            <p>Local model + citations to source files</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="border-bottom:none">
+      <div class="shell">
+        <div class="cta-band">
+          <div>
+            <h2>See security &amp; hardware</h2>
+            <p>Isolation, open storage, lease tiers — shared across both doors.</p>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn btn-primary" href="security.html">Security</a>
+            <a class="btn btn-secondary" href="hardware.html">Hardware</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <span class="logo-mark" data-brand-mark aria-hidden="true">O</span>
+            <span data-brand>Onsite</span>
+          </div>
+          <p class="footer-desc">One stack. Two doors. Files never leave the building.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Doors</h4>
+          <a href="plants.html">OEMs</a>
+          <a href="legal.html">Legal</a>
+        </div>
+        <div class="footer-col">
+          <h4>Shared</h4>
+          <a href="how-it-works.html">How it works</a>
+          <a href="security.html">Security</a>
+          <a href="hardware.html">Hardware</a>
+          <a href="pricing.html">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> <span data-brand>Onsite</span>.</span>
+        <span>Shared page — both audiences.</span>
+      </div>
+    </div>
+  </footer>
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/demo-data.js?v=oem-sales-2"></script>
+  <script src="js/demo-chat.js?v=oem-sales-2"></script>
+</body>
+</html>

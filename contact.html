@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — plant or firm</title>
+  <meta name="description" content="Contact on-site AI. Tell us if you are a plant or a firm so the right talk track answers." />
+  <meta name="theme-color" content="#08090a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="preview-banner" data-pending-only>
+    <strong>Preview build</strong> — parent brand name and domain TBD.
+  </div>
+  <header class="site-header">
+    <div class="shell">
+      <nav class="nav" aria-label="Primary">
+        <a class="logo" href="index.html">
+          <span class="logo-mark" data-brand-mark aria-hidden="true">O</span>
+          <span data-brand>Onsite</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <div class="nav-links">
+          <a href="plants.html">OEMs</a>
+          <a href="legal.html">Legal</a>
+          <a href="how-it-works.html">How it works</a>
+          <a href="security.html">Security</a>
+          <a href="hardware.html">Hardware</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="about.html">About</a>
+        </div>
+        <div class="nav-cta"><a class="btn-sm" href="contact.html" aria-current="page">Contact</a></div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="shell">
+        <div class="eyebrow">Contact</div>
+        <h1>Which door?</h1>
+        <p class="lead">
+          Same company. Different talk track. Pick OEM sales or firm so the right person answers.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" style="border-bottom:none">
+      <div class="shell">
+        <div class="contact-grid">
+          <article class="contact-card">
+            <h2>Send a note</h2>
+            <form class="form-grid" data-contact-form>
+              <div class="door-toggle" role="radiogroup" aria-label="I am a">
+                <label>
+                  <input type="radio" name="door" value="plants" checked />
+                  I am an OEM
+                </label>
+                <label>
+                  <input type="radio" name="door" value="legal" />
+                  I am a firm
+                </label>
+              </div>
+
+              <input type="hidden" data-mail-subject value="OEM sales inquiry — on-site AI" />
+
+              <label>
+                Name
+                <input name="name" type="text" autocomplete="name" required />
+              </label>
+              <label>
+                Organization
+                <input name="org" type="text" autocomplete="organization" required />
+              </label>
+              <label>
+                Role
+                <input name="role" type="text" placeholder="VP Sales, App Eng lead, Owner/GM, managing partner…" />
+              </label>
+
+              <div data-door-panel="plants">
+                <p class="hint">Helpful: product type, direct vs manufacturers’ rep channel, where proposals/CRM live, roughly how many seats.</p>
+              </div>
+              <div data-door-panel="legal" hidden>
+                <p class="hint">Helpful: firm size, DMS (iManage / NetDocuments / Clio / other), whether ethics counsel should be on the first call.</p>
+              </div>
+
+              <label>
+                Note
+                <textarea name="note" required placeholder="Short is fine."></textarea>
+              </label>
+
+              <button class="btn btn-primary" type="submit">Send</button>
+              <p class="hint" data-pending-only>
+                Inbox unlocks with the domain. Submit will show your draft so you can copy it for now.
+              </p>
+              <p class="hint" data-live-only hidden>
+                Opens your mail client to <span data-contact-email>hello@onsite.example</span>.
+              </p>
+            </form>
+          </article>
+
+          <article class="contact-card">
+            <h2>Who answers</h2>
+            <ul class="checklist">
+              <li><strong style="color:var(--text)">OEM door</strong> — John (stack + OEM sales)</li>
+              <li><strong style="color:var(--text)">Firm door</strong> — Julie (firm sales + ethics conversation)</li>
+              <li>One support queue after you are live</li>
+              <li>Illinois · Central Time</li>
+            </ul>
+            <p class="note" style="margin-top:24px">
+              Prefer reading first?
+              <a href="plants.html" style="color:var(--accent)">OEMs</a>
+              ·
+              <a href="legal.html" style="color:var(--accent)">Legal</a>
+              ·
+              <a href="security.html" style="color:var(--accent)">Security</a>
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <span class="logo-mark" data-brand-mark aria-hidden="true">O</span>
+            <span data-brand>Onsite</span>
+          </div>
+          <p class="footer-desc">One domain. Two doors. Same parent.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Doors</h4>
+          <a href="plants.html">OEMs</a>
+          <a href="legal.html">Legal</a>
+        </div>
+        <div class="footer-col">
+          <h4>Shared</h4>
+          <a href="how-it-works.html">How it works</a>
+          <a href="security.html">Security</a>
+          <a href="hardware.html">Hardware</a>
+          <a href="pricing.html">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> <span data-brand>Onsite</span>.</span>
+        <span>No healthcare door.</span>
+      </div>
+    </div>
+  </footer>
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

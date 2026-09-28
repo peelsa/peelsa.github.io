@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Security — on-prem isolation &amp; audit</title>
+  <meta name="description" content="On-prem inference, payload filters, query logs, TrueNAS SCALE / open ZFS. Spark drive holds OS and weights only." />
+  <meta name="theme-color" content="#08090a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="preview-banner" data-pending-only>
+    <strong>Preview build</strong> — parent brand name and domain TBD.
+  </div>
+  <header class="site-header">
+    <div class="shell">
+      <nav class="nav" aria-label="Primary">
+        <a class="logo" href="index.html">
+          <span class="logo-mark" data-brand-mark aria-hidden="true">O</span>
+          <span data-brand>Onsite</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <div class="nav-links">
+          <a href="plants.html">OEMs</a>
+          <a href="legal.html">Legal</a>
+          <a href="how-it-works.html">How it works</a>
+          <a href="security.html" aria-current="page">Security</a>
+          <a href="hardware.html">Hardware</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="about.html">About</a>
+        </div>
+        <div class="nav-cta"><a class="btn-sm" href="contact.html">Contact</a></div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="shell">
+        <div class="eyebrow">Security</div>
+        <h1>Isolation, walls, logs, open storage.</h1>
+        <p class="lead">
+          The same controls serve OEM pricing/config IP and firm privilege concerns.
+          Architecture first. Policy second.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="grid-2">
+          <article class="panel">
+            <span class="tag">Inference</span>
+            <h3>On-prem only</h3>
+            <p>Models run on the leased appliance inside your network. Tokens for your corpus are not sent to a public cloud for inference.</p>
+          </article>
+          <article class="panel">
+            <span class="tag">Walls</span>
+            <h3>Payload filters</h3>
+            <p>Retrieval is filtered by product line / region / role — or matter / client / ethical wall — before the model sees a chunk.</p>
+          </article>
+          <article class="panel">
+            <span class="tag">Audit</span>
+            <h3>Query log</h3>
+            <p>Every query and every retrieved chunk is logged. That log is the operational and ethics artifact.</p>
+          </article>
+          <article class="panel">
+            <span class="tag">Storage</span>
+            <h3>Open &amp; auditable</h3>
+            <p>Plant or firm corpus on TrueNAS SCALE (open ZFS) over fast NFS. Not a closed NAS OS you cannot inspect for phone-home.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div class="section-kicker">Drive layout</div>
+          <h2>Spark internal drive ≠ your files.</h2>
+        </div>
+        <div class="grid-2">
+          <article class="panel">
+            <h3>On the Spark</h3>
+            <ul>
+              <li>OS</li>
+              <li>Model weights</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3>On TrueNAS</h3>
+            <ul>
+              <li>Your corpus and extracts</li>
+              <li>Vector store data</li>
+              <li>ZFS snapshots before updates</li>
+              <li>RAID-Z redundancy</li>
+            </ul>
+          </article>
+        </div>
+        <div class="callout-accent" style="margin-top:24px">
+          Closed NAS firmware (QTS and similar) is out — you cannot prove there is no backdoor. Open storage is a sales point.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="border-bottom:none">
+      <div class="shell">
+        <div class="cta-band">
+          <div>
+            <h2>Hardware &amp; pricing</h2>
+            <p>Same chassis for both doors. We maintain the box; you keep your own backups.</p>
+          </div>
+          <a class="btn btn-primary" href="hardware.html">Hardware</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <span class="logo-mark" data-brand-mark aria-hidden="true">O</span>
+            <span data-brand>Onsite</span>
+          </div>
+          <p class="footer-desc">On-prem inference. Walls at retrieval. Logs you can keep.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Doors</h4>
+          <a href="plants.html">OEMs</a>
+          <a href="legal.html">Legal</a>
+        </div>
+        <div class="footer-col">
+          <h4>Shared</h4>
+          <a href="how-it-works.html">How it works</a>
+          <a href="security.html">Security</a>
+          <a href="hardware.html">Hardware</a>
+          <a href="pricing.html">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> <span data-brand>Onsite</span>.</span>
+        <span>Shared security page — both doors.</span>
+      </div>
+    </div>
+  </footer>
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
