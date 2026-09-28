@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hardware — leased on-prem appliance</title>
-  <meta name="description" content="1 Spark starter or 2 Spark enterprise. Lease, not sale. TrueNAS for corpus. We maintain; you do not touch the box." />
+  <meta name="description" content="Lease a DGX Spark, 2 or more Sparks linked, or a Mac Studio M5 Ultra with 256 GB. We maintain the box." />
   <meta name="theme-color" content="#08090a" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -39,36 +39,54 @@
     <section class="page-hero">
       <div class="shell">
         <div class="eyebrow">Hardware</div>
-        <h1>One SKU family. Lease, not sale.</h1>
+        <h1>Lease the box. We keep it running.</h1>
         <p class="lead">
-          NVIDIA DGX Sparks on your premises. We own the boxes, monitor them, patch them.
-          You do not babysit the appliance.
+          One DGX Spark, two or more Sparks linked, or a Mac Studio with M5 Ultra and 256 GB.
+          We own the hardware, monitor it, and patch it. You do not babysit the appliance.
         </p>
       </div>
     </section>
 
     <section class="section">
       <div class="shell">
-        <div class="grid-2">
-          <article class="panel">
-            <span class="tag">Starter</span>
+        <div class="hw-grid">
+          <article class="hw-card">
+            <img class="hw-photo" src="img/dgx-spark-one.jpg" alt="NVIDIA DGX Spark on a desk, from NVIDIA press photography" />
+            <span class="tag" style="margin-top:14px">Starter</span>
             <h3>1 Spark</h3>
-            <p>Smaller OEM sales orgs or firms — lighter concurrency.</p>
+            <p>Smaller teams. One NVIDIA DGX Spark on site.</p>
             <ul>
-              <li>Full local stack</li>
-              <li>Walls + query log</li>
-              <li>Remote managed service</li>
+              <li>NVIDIA GB10 Grace Blackwell</li>
+              <li>Up to 1 petaFLOP FP4 AI performance</li>
+              <li>128 GB coherent unified memory</li>
+              <li>ConnectX-7 networking</li>
             </ul>
+            <p class="hw-credit">Image: NVIDIA. <a href="https://www.nvidia.com/en-us/products/workstations/dgx-spark/">DGX Spark</a></p>
           </article>
-          <article class="panel">
-            <span class="tag">Enterprise</span>
-            <h3>2 Sparks linked</h3>
-            <p>Bigger models, redundancy, roughly 30–60 seats.</p>
+          <article class="hw-card">
+            <img class="hw-photo" src="img/dgx-spark-stack.jpg" alt="Three NVIDIA DGX Spark chassis stacked" />
+            <span class="tag" style="margin-top:14px">Enterprise</span>
+            <h3>2+ Sparks linked</h3>
+            <p>Two or more Sparks linked for larger models, redundancy, and roughly 30–60 seats. Shown as a three-high stack.</p>
             <ul>
-              <li>Linked inference</li>
-              <li>Same lease model</li>
-              <li>Same support queue</li>
+              <li>Linked over ConnectX</li>
+              <li>NVIDIA supports up to four Sparks in a cluster</li>
+              <li>Same lease and the same support queue</li>
             </ul>
+            <p class="hw-credit">Chassis photo: NVIDIA press image. The three-high arrangement is ours, to show 2 or more linked units. NVIDIA does not publish this exact stack as one still.</p>
+          </article>
+          <article class="hw-card">
+            <img class="hw-photo" src="img/mac-studio.jpg" alt="Apple Mac Studio, official press photo" />
+            <span class="tag" style="margin-top:14px">Studio</span>
+            <h3>Mac Studio, 256 GB</h3>
+            <p>Apple Mac Studio with M5 Ultra, configured with 256 GB of unified memory.</p>
+            <ul>
+              <li>Up to 36-core CPU and 80-core GPU</li>
+              <li>32-core Neural Engine</li>
+              <li>1.2 TB/s memory bandwidth</li>
+              <li>256 GB is a configure-to option on that Ultra, not the 96 GB base</li>
+            </ul>
+            <p class="hw-credit">Image: Apple. <a href="https://www.apple.com/newsroom/2026/08/apple-introduces-new-mac-studio-with-m5-max-and-m5-ultra/">Newsroom, 25 Aug 2026</a></p>
           </article>
         </div>
       </div>
@@ -78,16 +96,11 @@
       <div class="shell">
         <div class="section-header">
           <div class="section-kicker">Storage</div>
-          <h2>TrueNAS SCALE beside the Sparks.</h2>
+          <h2>TrueNAS SCALE beside the appliance.</h2>
           <p>
-            Spark NVMe = OS and weights. Your corpus lives on open, auditable ZFS over 10GbE NFS.
+            The Spark or Studio drive holds the OS and model weights. Your corpus lives on open, auditable ZFS over 10GbE NFS.
             Quarterly patches, never on release day. Snapshot before every update.
           </p>
-        </div>
-        <div class="appliance-shot">
-          <div class="box" aria-hidden="true"></div>
-          <p>Quiet product shot: the leased appliance. Same box for both doors.</p>
-        </div>
       </div>
     </section>
 
