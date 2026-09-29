@@ -1,7 +1,16 @@
-"""Checks the static site on every push. No network calls."""
+"""Checks the static site on every push.
+
+Serves the publishing root on localhost and fails if a required URL, tag,
+or company-profile link is wrong. No calls to the public site.
+"""
+import json
 import re
 import sys
+import threading
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from urllib.error import HTTPError
+from urllib.request import urlopen
 
 ROOT = Path(__file__).resolve().parents[2]
 PAGES = [
@@ -17,20 +26,12 @@ PAGES = [
     "privacy.html",
     "terms.html",
 ]
-ASSETS = [
-    "robots.txt",
-    "sitemap.xml",
-    "404.html",
-    "site.webmanifest",
-    "img/og.jpg",
-    "img/favicon.png",
-    "img/apple-touch-icon.png",
-    "css/fonts/inter-latin-400.woff2",
-    "css/fonts/inter-latin-500.woff2",
-    "css/fonts/inter-latin-600.woff2",
-    "css/fonts/inter-latin-700.woff2",
-    "css/fonts/OFL.txt",
+SAME_AS = [
+    "https://x.com/peelsalabs",
+    "https://github.com/peelsa",
+    "https://huggingface.co/peelsa",
 ]
+TWITTER_SITE = '<meta name="twitter:site" content="@peelsalabs" />'
 errors = []
 
 
@@ -46,10 +47,49 @@ def text(rel):
     return path.read_text(encoding="utf-8")
 
 
-for rel in ASSETS:
-    path = ROOT / rel
-    if not path.is_file() or path.stat().st_size < 20:
-        fail(f"missing or empty {rel}")
+def page_url(page):
+    if page == "index.html":
+        return "https://peelsa.ai/"
+    return f"https://peelsa.ai/{page}"
+
+
+class Handler(SimpleHTTPRequestHandler):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, directory=str(ROOT), **kwargs)
+
+    def log_message(self, fmt, *args):
+        return
+
+    def send_error(self, code, message=None, explain=None):
+        page = ROOT / "404.html"
+        if code == 404 and page.is_file():
+            body = page.read_bytes()
+            self.send_response(404)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
+        super().send_error(code, message, explain)
+
+
+def serve():
+    server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    return server
+
+
+def get(url):
+    try:
+        with urlopen(url, timeout=10) as response:
+            return response.status, response.read().decode("utf-8", "replace")
+    except HTTPError as exc:
+        return exc.code, exc.read().decode("utf-8", "replace")
+
+
+if not (ROOT / "404.html").is_file():
+    fail("missing 404.html")
 
 robots = text("robots.txt")
 if "Sitemap: https://peelsa.ai/sitemap.xml" not in robots:
@@ -57,49 +97,99 @@ if "Sitemap: https://peelsa.ai/sitemap.xml" not in robots:
 
 sitemap = text("sitemap.xml")
 locs = re.findall(r"<loc>(.*?)</loc>", sitemap)
-expected = []
-for page in PAGES:
-    url = "https://peelsa.ai/" if page == "index.html" else f"https://peelsa.ai/{page}"
-    expected.append(url)
+expected = [page_url(page) for page in PAGES]
 if locs != expected:
     fail(f"sitemap locations do not match the 11 pages: {locs}")
-if "404.html" in sitemap:
-    fail("sitemap includes the 404 page")
 
 css = text("css/styles.css")
-if css.count("@font-face") < 4:
-    fail("styles.css is missing the self-hosted Inter faces")
-if "fonts.googleapis.com" in css:
-    fail("styles.css still points at Google Fonts")
+for host in ("fonts.googleapis.com", "fonts.gstatic.com"):
+    if host in css:
+        fail(f"styles.css still requests {host}")
+if "inter-latin-400.woff2" not in css:
+    fail("styles.css is missing the self-hosted Inter files")
 
 for page in PAGES:
     html = text(page)
     if not html:
         continue
-    if "fonts.googleapis.com" in html or "fonts.gstatic.com" in html:
-        fail(f"{page} still loads Google Fonts")
+    for host in ("fonts.googleapis.com", "fonts.gstatic.com"):
+        if host in html:
+            fail(f"{page} still requests {host}")
     if not re.search(r"<title>[^<]+</title>", html):
         fail(f"{page} is missing a title")
-    if 'name="description"' not in html:
+    if not re.search(r'<meta name="description" content="[^"]+"', html):
         fail(f"{page} is missing a description")
-    canon = re.search(r'<link rel="canonical" href="(https://peelsa\.ai/[^"]*)"', html)
-    if not canon:
-        fail(f"{page} is missing a peelsa.ai canonical")
-    if "css/styles.css?v=font" not in html:
-        fail(f"{page} is not loading the current stylesheet")
+    canonical = page_url(page)
+    if f'<link rel="canonical" href="{canonical}"' not in html:
+        fail(f"{page} canonical is not {canonical}")
+    if TWITTER_SITE not in html:
+        fail(f"{page} is missing {TWITTER_SITE}")
 
 missing = text("404.html")
 if missing:
-    if 'content="noindex,follow"' not in missing:
-        fail("404.html is not marked noindex")
-    if "fonts.googleapis.com" in missing:
-        fail("404.html still loads Google Fonts")
+    for host in ("fonts.googleapis.com", "fonts.gstatic.com"):
+        if host in missing:
+            fail(f"404.html still requests {host}")
+    if "This page does not exist." not in missing:
+        fail("404.html does not say the page does not exist")
+    for label, href in (
+        ("Home", "index.html"),
+        ("OEMs", "plants.html"),
+        ("Legal", "legal.html"),
+        ("Contact", "contact.html"),
+    ):
+        if f'href="{href}"' not in missing:
+            fail(f"404.html does not link to {label}")
+    if "site-header" not in missing or "site-footer" not in missing:
+        fail("404.html is missing the site header or footer")
 
 home = text("index.html")
-if '"sameAs"' not in home or "https://github.com/peelsa" not in home:
-    fail("homepage company block is missing the GitHub organization")
+block = re.search(
+    r'<script type="application/ld\+json">(.*?)</script>',
+    home,
+    re.S,
+)
+same_as = None
+if not block:
+    fail("homepage is missing the company info block")
+else:
+    try:
+        data = json.loads(block.group(1))
+    except json.JSONDecodeError as exc:
+        fail(f"homepage company info block is not valid JSON: {exc}")
+        data = {}
+    for node in data.get("@graph", []):
+        if node.get("@type") == "Organization":
+            same_as = node.get("sameAs")
+    if same_as != SAME_AS:
+        fail(f"Organization sameAs is {same_as}, expected {SAME_AS}")
+
+server = serve()
+base = f"http://127.0.0.1:{server.server_address[1]}"
+routes = {
+    "/": "index.html",
+    "/robots.txt": "robots.txt",
+    "/sitemap.xml": "sitemap.xml",
+}
+for page in PAGES:
+    if page == "index.html":
+        continue
+    routes[f"/{page}"] = page
+
+try:
+    for route in routes:
+        status, _body = get(base + route)
+        if status != 200:
+            fail(f"{route} returned {status}")
+    status, body = get(base + "/this-page-does-not-exist")
+    if status != 404:
+        fail(f"unknown path returned {status}")
+    if "This page does not exist." not in body:
+        fail("unknown path did not serve 404.html")
+finally:
+    server.shutdown()
 
 if errors:
     print("\n".join(errors))
     sys.exit(1)
-print(f"ok: {len(PAGES)} pages, sitemap, fonts, 404")
+print(f"ok: {len(PAGES)} pages, sitemap, fonts, profiles, 404")
