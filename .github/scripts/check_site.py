@@ -124,6 +124,8 @@ for page in PAGES:
         fail(f"{page} canonical is not {canonical}")
     if TWITTER_SITE not in html:
         fail(f"{page} is missing {TWITTER_SITE}")
+    if "e1d50a7d3d354c57be39a8f6daea27db" not in html:
+        fail(f"{page} is missing the Cloudflare Web Analytics beacon")
 
 missing = text("404.html")
 if missing:
@@ -142,6 +144,8 @@ if missing:
             fail(f"404.html does not link to {label}")
     if "site-header" not in missing or "site-footer" not in missing:
         fail("404.html is missing the site header or footer")
+    if "e1d50a7d3d354c57be39a8f6daea27db" not in missing:
+        fail("404.html is missing the Cloudflare Web Analytics beacon")
 
 home = text("index.html")
 block = re.search(
