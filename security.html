@@ -95,30 +95,10 @@
 
     <section class="section">
       <div class="shell">
-        <div class="section-header">
-          <div class="section-kicker">Drive layout</div>
-          <h2>Spark internal drive ≠ your files.</h2>
-        </div>
-        <div class="grid-2">
-          <article class="panel">
-            <h3>On the Spark</h3>
-            <ul>
-              <li>OS</li>
-              <li>Model weights</li>
-            </ul>
-          </article>
-          <article class="panel">
-            <h3>On TrueNAS</h3>
-            <ul>
-              <li>Your corpus and extracts</li>
-              <li>Vector store data</li>
-              <li>ZFS snapshots before updates</li>
-              <li>RAID-Z redundancy</li>
-            </ul>
-          </article>
-        </div>
-        <div class="callout-accent" style="margin-top:24px">
-          The inference device does not store your files. The Spark or Mac Studio holds the operating system and the model weights. The files stay on the storage system beside it.
+        <div class="section-header" style="margin-bottom:0">
+          <div class="section-kicker">Isolation</div>
+          <h2>The inference device is kept apart from the files.</h2>
+          <p>The Spark or Mac Studio holds the operating system and the model weights. The files, the extracts, and the index stay on the storage system beside it. Service or replace the appliance, and the archive stays where it was.</p>
         </div>
       </div>
     </section>
