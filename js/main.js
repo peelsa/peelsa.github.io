@@ -66,8 +66,8 @@
     if (subjectField) {
       subjectField.value =
         door === "legal"
-          ? "Firm inquiry — on-site AI"
-          : "OEM sales inquiry — on-site AI";
+          ? "Firm inquiry — on-site Super Intelligence"
+          : "OEM sales inquiry — on-site Super Intelligence";
     }
   }
 
