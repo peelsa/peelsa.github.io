@@ -307,29 +307,54 @@ body:has(.scroll-video) .site-footer {
   position: relative;
   z-index: 1;
 }
-/* Scroll range for a ~10s clip. The short homepage was only an inch or two tall, so the clip finished in one flick. */
-body:has(.scroll-video) main {
-  min-height: 480vh;
+/* Each beat holds for 2in while the clip keeps scrubbing, then scrolls on.
+   The gaps keep the page long enough that the clip does not finish in one flick. */
+body:has(.scroll-video) main > section {
+  height: calc(100vh - var(--nav-h) + 2in);
+  padding: 0;
+}
+body:has(.scroll-video) main > section > .shell {
+  position: sticky;
+  top: var(--nav-h);
+  height: calc(100vh - var(--nav-h));
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 }
 body:has(.scroll-video) .hero {
-  min-height: calc(100vh - var(--nav-h));
-  display: flex;
-  align-items: center;
-  padding-top: 24px;
-  padding-bottom: 24px;
+  min-height: 0;
+  display: block;
+  padding: 0;
+}
+body:has(.scroll-video) .scroll-gap {
+  height: 70vh;
+}
+body:has(.scroll-video) main > section:last-child > .shell {
+  justify-content: flex-end;
+  padding-bottom: 3.5in;
 }
 @media (prefers-reduced-motion: reduce) {
-  body:has(.scroll-video) main {
-    min-height: 0;
+  body:has(.scroll-video) .scroll-gap {
+    display: none;
+  }
+  body:has(.scroll-video) main > section {
+    height: auto;
+    padding: 28px 0 64px;
+  }
+  body:has(.scroll-video) main > section > .shell {
+    position: static;
+    height: auto;
     display: block;
   }
   body:has(.scroll-video) .hero {
-    min-height: 0;
     display: block;
     padding: 72px 0 32px;
+  }
+  body:has(.scroll-video) main > section:last-child {
+    padding-bottom: 3.5in;
+  }
+  body:has(.scroll-video) main > section:last-child > .shell {
+    padding-bottom: 0;
   }
 }
 .scroll-video {
