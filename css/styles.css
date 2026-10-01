@@ -376,13 +376,13 @@ body:has(.scroll-video) main > section:last-child > .shell {
 .scroll-video video,
 .scroll-video canvas {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  max-width: none;
   object-fit: cover;
-}
-.scroll-video.is-ios video {
-  opacity: 0;
 }
 .scroll-video::after {
   content: "";

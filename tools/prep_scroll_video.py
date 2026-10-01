@@ -67,7 +67,9 @@ def main() -> int:
         cmd.extend([
             "-f", "lavfi", "-t", "30", "-i", "anullsrc=r=44100:cl=stereo",
             "-map", "0:v:0", "-map", "1:a:0", "-shortest",
+            "-vf", "scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720",
             "-c:v", "libx264", "-preset", "medium", "-crf", "18",
+            "-profile:v", "main", "-level", "4.0",
             "-pix_fmt", "yuv420p",
             "-g", "1", "-keyint_min", "1", "-x264-params", "scenecut=0",
             "-c:a", "aac", "-b:a", "32k",
