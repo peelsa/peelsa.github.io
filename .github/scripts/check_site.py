@@ -15,10 +15,10 @@ from urllib.request import urlopen
 ROOT = Path(__file__).resolve().parents[2]
 PAGES = [
     "index.html",
+    "who-we-serve.html",
     "plants.html",
     "legal.html",
     "how-it-works.html",
-    "hardware.html",
     "pricing.html",
     "security.html",
     "about.html",
@@ -99,7 +99,22 @@ sitemap = text("sitemap.xml")
 locs = re.findall(r"<loc>(.*?)</loc>", sitemap)
 expected = [page_url(page) for page in PAGES]
 if locs != expected:
-    fail(f"sitemap locations do not match the 11 pages: {locs}")
+    fail(f"sitemap locations do not match the pages: {locs}")
+
+plants = text("plants.html").lower()
+for phrase in ("proposal book", "product line wall", "enter oems", "privilege", "ethical wall", "malpractice", "imanage", "matter file"):
+    if phrase in plants:
+        fail(f"plants.html still contains {phrase}")
+
+legal = text("legal.html").lower()
+for phrase in ("line 3", "plc", "tribal knowledge", "oem"):
+    if phrase in legal:
+        fail(f"legal.html still contains {phrase}")
+
+pricing = text("pricing.html").lower()
+for phrase in ("consequential", "12-month", "twelve month", "liability cap", "prior 12"):
+    if phrase in pricing:
+        fail(f"pricing.html still contains {phrase}")
 
 css = text("css/styles.css")
 for host in ("fonts.googleapis.com", "fonts.gstatic.com"):

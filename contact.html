@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact | Peelsa Labs</title>
-  <meta name="description" content="Tell Peelsa Labs whether you are a technical OEM or a law firm so the right conversation starts." />
+  <meta name="description" content="Tell Peelsa Labs your name, company, email, and what you are looking for." />
   <meta name="theme-color" content="#08090a" />
   <link rel="canonical" href="https://peelsa.ai/contact.html" />
   <meta name="robots" content="index,follow" />
@@ -13,20 +13,20 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:url" content="https://peelsa.ai/contact.html" />
   <meta property="og:title" content="Contact | Peelsa Labs" />
-  <meta property="og:description" content="Tell Peelsa Labs whether you are a technical OEM or a law firm so the right conversation starts." />
+  <meta property="og:description" content="Tell Peelsa Labs your name, company, email, and what you are looking for." />
   <meta property="og:image" content="https://peelsa.ai/img/og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Peelsa Labs. The model comes to your files." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Contact | Peelsa Labs" />
-  <meta name="twitter:description" content="Tell Peelsa Labs whether you are a technical OEM or a law firm so the right conversation starts." />
+  <meta name="twitter:description" content="Tell Peelsa Labs your name, company, email, and what you are looking for." />
   <meta name="twitter:image" content="https://peelsa.ai/img/og.jpg" />
   <meta name="twitter:site" content="@peelsalabs" />
   <link rel="icon" href="img/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
-  <link rel="stylesheet" href="css/styles.css?v=font" />
+  <link rel="stylesheet" href="css/styles.css?v=prodcolors" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -39,91 +39,38 @@
         </a>
         <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
         <div class="nav-links">
-          <a href="plants.html">OEMs</a>
-          <a href="legal.html">Legal</a>
+          <a href="who-we-serve.html">Who we serve</a>
           <a href="how-it-works.html">How it works</a>
           <a href="security.html">Security</a>
-          <a href="hardware.html">Hardware</a>
           <a href="pricing.html">Pricing</a>
           <a href="about.html">About</a>
         </div>
-        <div class="nav-cta"><a class="btn-sm" href="contact.html" aria-current="page">Contact</a></div>
+        <div class="nav-cta"><a class="btn-sm" href="contact.html">Contact</a></div>
       </nav>
     </div>
   </header>
-
   <main id="main">
     <section class="page-hero">
       <div class="shell">
-        <div class="eyebrow">Contact</div>
-        <h1>Which door?</h1>
-        <p class="lead">
-          Same company. Different talk track. Pick OEM sales or firm so the right person answers.
-        </p>
+        <p class="eyebrow">Contact</p>
+        <h1>Send a note.</h1>
+        <p class="lead">Name, company, email, and one line on what you are looking for.</p>
       </div>
     </section>
-
-    <section class="section" style="border-bottom:none">
+    <section class="section">
       <div class="shell">
-        <div class="contact-grid" style="grid-template-columns: minmax(0, 640px);">
-          <article class="contact-card">
-            <h2>Send a note</h2>
-            <form class="form-grid" data-contact-form>
-              <div class="door-toggle" role="radiogroup" aria-label="I am a">
-                <label>
-                  <input type="radio" name="door" value="plants" checked />
-                  I am an OEM
-                </label>
-                <label>
-                  <input type="radio" name="door" value="legal" />
-                  I am a firm
-                </label>
-              </div>
-
-              <input type="hidden" data-mail-subject value="OEM sales inquiry — on-site Super Intelligence" />
-
-              <label class="hp-field" aria-hidden="true">
-                Company website
-                <input name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
-              </label>
-              <label>
-                Name
-                <input name="name" type="text" autocomplete="name" required />
-              </label>
-              <label>
-                Your email
-                <input name="email" type="email" autocomplete="email" required />
-              </label>
-              <label>
-                Organization
-                <input name="org" type="text" autocomplete="organization" required />
-              </label>
-              <label>
-                Role
-                <input name="role" type="text" placeholder="VP Sales, App Eng lead, Owner/GM, managing partner…" />
-              </label>
-
-              <div data-door-panel="plants">
-                <p class="hint">Helpful: product type, direct vs manufacturers’ rep channel, where proposals/CRM live, roughly how many seats.</p>
-              </div>
-              <div data-door-panel="legal" hidden>
-                <p class="hint">Helpful: firm size, DMS (iManage / NetDocuments / Clio / other), whether ethics counsel should be on the first call.</p>
-              </div>
-
-              <label>
-                Note
-                <textarea name="note" required placeholder="Short is fine."></textarea>
-              </label>
-
-              <button class="btn btn-primary" type="submit" data-fs-submit>Send</button>
-              <p class="hint" data-form-status role="status"></p>
-            </form>
-          </article>
-        </div>
+        <form class="form-grid" data-contact-form>
+          <label>Name <input name="name" type="text" required autocomplete="name" /></label>
+          <label>Company <input name="company" type="text" required autocomplete="organization" /></label>
+          <label>Email <input name="email" type="email" required autocomplete="email" /></label>
+          <label>What are you looking for? <input name="note" type="text" required /></label>
+          <div class="hp-field"><label>Leave blank <input name="_gotcha" tabindex="-1" autocomplete="off" /></label></div>
+          <button class="btn btn-primary" type="submit" data-fs-submit>Send</button>
+          <p class="note" data-form-status role="status"></p>
+        </form>
       </div>
     </section>
   </main>
-
   <footer class="site-footer">
     <div class="shell">
       <div class="footer-grid">
@@ -132,29 +79,29 @@
             <img class="logo-mark" src="img/peelsa.png?v=lime" alt="" width="32" height="32" />
             <span data-brand>Peelsa Labs</span>
           </div>
-          <p class="footer-desc">One domain. Two doors. Same parent.</p>
+          <p class="footer-desc">On-site Super Intelligence. The model comes to your files.</p>
         </div>
         <div class="footer-col">
-          <h4>Doors</h4>
-          <a href="plants.html">OEMs</a>
-          <a href="legal.html">Legal</a>
+          <h4>Who we serve</h4>
+          <a href="who-we-serve.html">Who we serve</a>
         </div>
         <div class="footer-col">
-          <h4>Shared</h4>
+          <h4>Product</h4>
           <a href="how-it-works.html">How it works</a>
           <a href="security.html">Security</a>
-          <a href="hardware.html">Hardware</a>
           <a href="pricing.html">Pricing</a>
         </div>
         <div class="footer-col">
           <h4>Company</h4>
           <a href="about.html">About</a>
           <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
         </div>
       </div>
       <div class="footer-bottom">
         <span>© <span data-year>2026</span> <span data-brand>Peelsa Labs</span>.</span>
-        <span>No healthcare door.</span>
+        <span>Founded 2026.</span>
       </div>
     </div>
   </footer>

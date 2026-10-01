@@ -53,39 +53,7 @@
   const year = document.querySelector("[data-year]");
   if (year) year.textContent = String(new Date().getFullYear());
 
-  // Contact: plant / firm toggle
-  const doorInputs = document.querySelectorAll('input[name="door"]');
-  const doorPanels = document.querySelectorAll("[data-door-panel]");
-  const subjectField = document.querySelector("[data-mail-subject]");
   const form = document.querySelector("[data-contact-form]");
-
-  function setDoor(door) {
-    doorPanels.forEach((panel) => {
-      panel.hidden = panel.getAttribute("data-door-panel") !== door;
-    });
-    if (subjectField) {
-      subjectField.value =
-        door === "legal"
-          ? "Firm inquiry — on-site Super Intelligence"
-          : "OEM sales inquiry — on-site Super Intelligence";
-    }
-  }
-
-  const params = new URLSearchParams(window.location.search);
-  const doorParam = params.get("door");
-  if (doorParam === "legal" || doorParam === "plants") {
-    doorInputs.forEach((input) => {
-      input.checked = input.value === doorParam;
-    });
-    setDoor(doorParam);
-  }
-
-  doorInputs.forEach((input) => {
-    input.addEventListener("change", () => {
-      if (input.checked) setDoor(input.value);
-    });
-    if (input.checked) setDoor(input.value);
-  });
 
   if (form) {
     const status = form.querySelector("[data-form-status]");
@@ -98,17 +66,12 @@
         form.reset();
         return;
       }
-      const door =
-        (form.querySelector('input[name="door"]:checked') || {}).value ||
-        "plants";
       const payload = {
         email: (form.querySelector('[name="email"]') || {}).value || "",
         name: (form.querySelector('[name="name"]') || {}).value || "",
-        organization: (form.querySelector('[name="org"]') || {}).value || "",
-        role: (form.querySelector('[name="role"]') || {}).value || "",
-        door: door === "legal" ? "Law firm" : "Technical OEM",
+        company: (form.querySelector('[name="company"]') || {}).value || "",
         message: (form.querySelector('[name="note"]') || {}).value || "",
-        _subject: door === "legal" ? "Firm inquiry — Peelsa Labs" : "OEM inquiry — Peelsa Labs",
+        _subject: "Inquiry — Peelsa Labs",
       };
       if (submitBtn) submitBtn.disabled = true;
       if (status) status.textContent = "Sending…";
@@ -121,7 +84,6 @@
           if (!res.ok) throw new Error("send failed");
           if (status) status.textContent = "Sent. We will reply from a private inbox.";
           form.reset();
-          setDoor("plants");
         })
         .catch(() => {
           if (status) status.textContent = "Could not send. Try again in a moment.";

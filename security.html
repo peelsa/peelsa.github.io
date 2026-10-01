@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Security | Peelsa Labs</title>
-  <meta name="description" content="The inference device does not store your files. It holds the OS and model weights. Files stay on the storage system beside it." />
+  <meta name="description" content="On-premises inference, payload filters, and a query log. Data lives on open ZFS storage. The Spark drive holds the system and the weights." />
   <meta name="theme-color" content="#08090a" />
   <link rel="canonical" href="https://peelsa.ai/security.html" />
   <meta name="robots" content="index,follow" />
@@ -13,20 +13,20 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:url" content="https://peelsa.ai/security.html" />
   <meta property="og:title" content="Security | Peelsa Labs" />
-  <meta property="og:description" content="The inference device does not store your files. It holds the OS and model weights. Files stay on the storage system beside it." />
+  <meta property="og:description" content="On-premises inference, payload filters, and a query log. Data lives on open ZFS storage. The Spark drive holds the system and the weights." />
   <meta property="og:image" content="https://peelsa.ai/img/og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Peelsa Labs. The model comes to your files." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Security | Peelsa Labs" />
-  <meta name="twitter:description" content="The inference device does not store your files. It holds the OS and model weights. Files stay on the storage system beside it." />
+  <meta name="twitter:description" content="On-premises inference, payload filters, and a query log. Data lives on open ZFS storage. The Spark drive holds the system and the weights." />
   <meta name="twitter:image" content="https://peelsa.ai/img/og.jpg" />
   <meta name="twitter:site" content="@peelsalabs" />
   <link rel="icon" href="img/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
-  <link rel="stylesheet" href="css/styles.css?v=font" />
+  <link rel="stylesheet" href="css/styles.css?v=prodcolors" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -39,11 +39,9 @@
         </a>
         <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
         <div class="nav-links">
-          <a href="plants.html">OEMs</a>
-          <a href="legal.html">Legal</a>
+          <a href="who-we-serve.html">Who we serve</a>
           <a href="how-it-works.html">How it works</a>
           <a href="security.html" aria-current="page">Security</a>
-          <a href="hardware.html">Hardware</a>
           <a href="pricing.html">Pricing</a>
           <a href="about.html">About</a>
         </div>
@@ -51,69 +49,23 @@
       </nav>
     </div>
   </header>
-
   <main id="main">
     <section class="page-hero">
       <div class="shell">
-        <div class="eyebrow">Security</div>
-        <h1>Isolation, walls, logs, open storage.</h1>
-        <p class="lead">
-          The same controls serve OEM pricing/config IP and firm privilege concerns.
-          Architecture first. Policy second.
-        </p>
+        <p class="eyebrow">Security</p>
+        <h1>The files, the log, and the weights stay in the building.</h1>
+        <p class="lead">Inference runs on premises. A payload filter checks what is sent into the model. The query log records the question and the passages that came back.</p>
       </div>
     </section>
-
     <section class="section">
-      <div class="shell">
-        <div class="grid-2">
-          <article class="panel">
-            <span class="tag">Inference</span>
-            <h3>On-prem only</h3>
-            <p>Models run on the leased appliance inside your network. Tokens for your corpus are not sent to a public cloud for inference.</p>
-          </article>
-          <article class="panel">
-            <span class="tag">Walls</span>
-            <h3>Payload filters</h3>
-            <p>Retrieval is filtered by product line / region / role — or matter / client / ethical wall — before the model sees a chunk.</p>
-          </article>
-          <article class="panel">
-            <span class="tag">Audit</span>
-            <h3>Query log</h3>
-            <p>Every query and every retrieved chunk is logged. That log is the operational and ethics artifact.</p>
-          </article>
-          <article class="panel">
-            <span class="tag">Storage</span>
-            <h3>Open &amp; auditable</h3>
-            <p>Plant or firm corpus on TrueNAS SCALE (open ZFS) over fast NFS. Not a closed NAS OS you cannot inspect for phone-home.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="shell">
-        <div class="section-header" style="margin-bottom:0">
-          <div class="section-kicker">Isolation</div>
-          <h2>The inference device is kept apart from the files.</h2>
-          <p>The Spark or Mac Studio holds the operating system and the model weights. The files, the extracts, and the index stay on the storage system beside it. Service or replace the appliance, and the archive stays where it was.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" style="border-bottom:none">
-      <div class="shell">
-        <div class="cta-band">
-          <div>
-            <h2>Hardware &amp; pricing</h2>
-            <p>Same chassis for both doors. We maintain the box; you keep your own backups.</p>
-          </div>
-          <a class="btn btn-primary" href="hardware.html">Hardware</a>
-        </div>
+      <div class="shell prose">
+        <h2>Where the bytes sit</h2>
+        <p>Storage is TrueNAS SCALE on open ZFS, not a closed storage operating system. The internal drive on the DGX Spark holds the operating system and the model weights. The documents live on an external TrueNAS system, reached over 10GbE NFS.</p>
+        <h2>What is recorded</h2>
+        <p>Every query is logged. Every retrieved chunk is logged. Walls are applied before a passage reaches the model, so a blocked question does not return the text it asked for.</p>
       </div>
     </section>
   </main>
-
   <footer class="site-footer">
     <div class="shell">
       <div class="footer-grid">
@@ -122,29 +74,29 @@
             <img class="logo-mark" src="img/peelsa.png?v=lime" alt="" width="32" height="32" />
             <span data-brand>Peelsa Labs</span>
           </div>
-          <p class="footer-desc">On-prem inference. Walls at retrieval. Logs you can keep.</p>
+          <p class="footer-desc">On-site Super Intelligence. The model comes to your files.</p>
         </div>
         <div class="footer-col">
-          <h4>Doors</h4>
-          <a href="plants.html">OEMs</a>
-          <a href="legal.html">Legal</a>
+          <h4>Who we serve</h4>
+          <a href="who-we-serve.html">Who we serve</a>
         </div>
         <div class="footer-col">
-          <h4>Shared</h4>
+          <h4>Product</h4>
           <a href="how-it-works.html">How it works</a>
           <a href="security.html">Security</a>
-          <a href="hardware.html">Hardware</a>
           <a href="pricing.html">Pricing</a>
         </div>
         <div class="footer-col">
           <h4>Company</h4>
           <a href="about.html">About</a>
           <a href="contact.html">Contact</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
         </div>
       </div>
       <div class="footer-bottom">
         <span>© <span data-year>2026</span> <span data-brand>Peelsa Labs</span>.</span>
-        <span>Shared security page — both doors.</span>
+        <span>Founded 2026.</span>
       </div>
     </div>
   </footer>
