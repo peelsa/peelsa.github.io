@@ -62,10 +62,15 @@ def main() -> int:
         cmd = ["ffmpeg", "-y", "-i", str(src)]
         if start > 0:
             cmd.extend(["-ss", f"{start:.3f}"])
+        # A silent audio track is included because iPhone Safari will not
+        # show a video-only file. The element stays muted.
         cmd.extend([
-            "-an", "-c:v", "libx264", "-preset", "medium", "-crf", "18",
+            "-f", "lavfi", "-t", "30", "-i", "anullsrc=r=44100:cl=stereo",
+            "-map", "0:v:0", "-map", "1:a:0", "-shortest",
+            "-c:v", "libx264", "-preset", "medium", "-crf", "18",
             "-pix_fmt", "yuv420p",
             "-g", "1", "-keyint_min", "1", "-x264-params", "scenecut=0",
+            "-c:a", "aac", "-b:a", "32k",
             "-movflags", "+faststart",
             str(dest),
         ])
