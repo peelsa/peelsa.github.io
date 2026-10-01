@@ -307,8 +307,7 @@ body:has(.scroll-video) .site-footer {
   position: relative;
   z-index: 1;
 }
-/* Each beat holds for 2in while the clip keeps scrubbing, then scrolls on.
-   The gaps keep the page long enough that the clip does not finish in one flick. */
+/* Each beat holds for 2in while the clip keeps scrubbing, then scrolls on. */
 body:has(.scroll-video) main > section {
   height: calc(100vh - var(--nav-h) + 2in);
   padding: 0;
@@ -327,7 +326,7 @@ body:has(.scroll-video) .hero {
   padding: 0;
 }
 body:has(.scroll-video) .scroll-gap {
-  height: 70vh;
+  height: 48px;
 }
 body:has(.scroll-video) main > section:last-child > .shell {
   justify-content: flex-end;

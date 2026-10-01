@@ -21,7 +21,7 @@
   var ready = videos.map(function () { return false; });
   var heldStill = false;
   var queued = false;
-  var frame = 1 / 24;
+  var fps = 24;
 
   function clamp01(n) {
     if (n < 0) return 0;
@@ -54,9 +54,41 @@
     var video = videos[slice.index];
     if (!ready[slice.index] || !isFinite(video.duration) || video.duration <= 0) return;
     show(slice.index);
-    var target = video.duration * slice.frac;
-    if (Math.abs(video.currentTime - target) < frame) return;
-    try { video.currentTime = target; } catch (err) {}
+    var index = Math.round(video.duration * slice.frac * fps);
+    var last = Math.max(0, Math.round(video.duration * fps) - 1);
+    if (index > last) index = last;
+    if (index < 0) index = 0;
+    if (Math.round(video.currentTime * fps) === index) return;
+    try { video.currentTime = index / fps; } catch (err) {}
+  }
+
+  function frameCount() {
+    var total = 0;
+    videos.forEach(function (video, i) {
+      if (!ready[i] || !isFinite(video.duration) || video.duration <= 0) return;
+      total += Math.max(1, Math.round(video.duration * fps));
+    });
+    return total;
+  }
+
+  function wheelPixels(event) {
+    if (event.deltaMode === 1) return event.deltaY * 40;
+    if (event.deltaMode === 2) return event.deltaY * window.innerHeight;
+    return event.deltaY;
+  }
+
+  function stepWheel(event) {
+    if (reduce || event.ctrlKey) return;
+    if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var count = frameCount();
+    if (max <= 0 || count < 2) return;
+    var native = wheelPixels(event);
+    if (!native) return;
+    event.preventDefault();
+    var oneFrame = max / (count - 1);
+    var midway = (native < 0 ? -1 : 1) * (oneFrame + Math.abs(native)) / 2;
+    window.scrollBy(0, midway);
   }
 
   function mark() {
@@ -82,4 +114,5 @@
 
   window.addEventListener("scroll", mark, { passive: true });
   window.addEventListener("resize", mark);
+  window.addEventListener("wheel", stepWheel, { passive: false });
 })();

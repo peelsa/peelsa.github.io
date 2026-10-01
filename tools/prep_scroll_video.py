@@ -58,23 +58,18 @@ def main() -> int:
             print("missing master", src, file=sys.stderr)
             return 1
         dest = OUT_DIR / name
+        # Every frame is a keyframe so a scroll seek paints that frame.
+        cmd = ["ffmpeg", "-y", "-i", str(src)]
         if start > 0:
-            # Re-encode so the cut lands on the listed start, not on a keyframe.
-            cmd = [
-                "ffmpeg", "-y", "-i", str(src),
-                "-ss", f"{start:.3f}",
-                "-an", "-c:v", "libx264", "-preset", "medium", "-crf", "18",
-                "-pix_fmt", "yuv420p", "-movflags", "+faststart",
-                str(dest),
-            ]
-            print("trim", name, "start", start)
-        else:
-            cmd = [
-                "ffmpeg", "-y", "-i", str(src),
-                "-c", "copy", "-an", "-movflags", "+faststart",
-                str(dest),
-            ]
-            print("remux", name)
+            cmd.extend(["-ss", f"{start:.3f}"])
+        cmd.extend([
+            "-an", "-c:v", "libx264", "-preset", "medium", "-crf", "18",
+            "-pix_fmt", "yuv420p",
+            "-g", "1", "-keyint_min", "1", "-x264-params", "scenecut=0",
+            "-movflags", "+faststart",
+            str(dest),
+        ])
+        print("intra", name, "start", start)
         result = subprocess.run(cmd, capture_output=True, text=True)
         if result.returncode != 0:
             sys.stderr.write(result.stderr[-2000:])
