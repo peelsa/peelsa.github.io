@@ -26,7 +26,7 @@
   <link rel="icon" href="img/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
-  <link rel="stylesheet" href="css/styles.css?v=prodcolors" />
+  <link rel="stylesheet" href="css/styles.css?v=phone" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -68,6 +68,7 @@
           <button class="btn btn-primary" type="submit" data-fs-submit>Send</button>
           <p class="note" data-form-status role="status"></p>
         </form>
+        <p class="call-line">Prefer to call? <button type="button" data-show-phone>Show the number</button></p>
       </div>
     </section>
   </main>
@@ -105,6 +106,20 @@
       </div>
     </div>
   </footer>
+  <script>
+    (function () {
+      var button = document.querySelector("[data-show-phone]");
+      if (!button) return;
+      var digits = [8, 1, 6, 4, 7, 4, 3, 4, 1, 3];
+      button.addEventListener("click", function () {
+        var n = digits.slice().reverse().join("");
+        var link = document.createElement("a");
+        link.href = "tel:+1" + n;
+        link.textContent = "(" + n.slice(0, 3) + ") " + n.slice(3, 6) + "-" + n.slice(6);
+        button.replaceWith(link);
+      });
+    })();
+  </script>
   <script src="js/config.js"></script>
   <script src="js/main.js"></script>
   <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "e1d50a7d3d354c57be39a8f6daea27db"}'></script><!-- End Cloudflare Web Analytics -->

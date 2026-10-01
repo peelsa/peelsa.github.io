@@ -190,6 +190,16 @@ button, input, textarea { font: inherit; color: inherit; }
 .prose p, .prose li { color: var(--muted); margin-bottom: 10px; }
 .prose ul { padding-left: 18px; }
 .note { color: var(--muted); font-size: 14px; }
+.call-line { margin-top: 22px; }
+.call-line button {
+  font: inherit;
+  color: var(--accent);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.call-line button:hover { color: var(--accent-hover); }
 
 .table-wrap { border: 1px solid var(--border); border-radius: var(--radius); overflow: auto; }
 table { width: 100%; border-collapse: collapse; }
