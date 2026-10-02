@@ -1,6 +1,6 @@
 (function () {
   const cfg = window.SITE || window.FW || {};
-  const brand = cfg.brand || "Peelsa Labs";
+  const brand = cfg.brand || "Peelsa";
   const mark = cfg.brandMark || brand.charAt(0).toUpperCase();
   const email = (cfg.CONTACT_EMAIL || "").trim();
   const intended = (cfg.INTENDED_EMAIL || "").trim();
@@ -71,7 +71,7 @@
         name: (form.querySelector('[name="name"]') || {}).value || "",
         company: (form.querySelector('[name="company"]') || {}).value || "",
         message: (form.querySelector('[name="note"]') || {}).value || "",
-        _subject: "Inquiry — Peelsa Labs",
+        _subject: "Inquiry — Peelsa",
       };
       if (submitBtn) submitBtn.disabled = true;
       if (status) status.textContent = "Sending…";

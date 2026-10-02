@@ -3,7 +3,7 @@
  * Keep CONTACT_EMAIL empty until the inbox works.
  */
 window.SITE = {
-  brand: "Peelsa Labs",
+  brand: "Peelsa",
   brandMark: "P",
   CONTACT_EMAIL: "",
   INTENDED_EMAIL: "",
